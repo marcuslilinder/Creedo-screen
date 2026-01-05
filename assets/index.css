@@ -1,0 +1,685 @@
+@charset "UTF-8";
+
+/* Reset and Base Styles */
+*,
+*:before,
+*:after {
+    box-sizing: border-box
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: none
+}
+
+@media(prefers-reduced-motion:no-preference) {
+    html {
+        interpolate-size: allow-keywords
+    }
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: linear-gradient(135deg, #c4d0dd 0%, #ffffff 100%); /* Grayish blue gradient */
+    font-family: 'Afacad', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: normal;
+    -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word
+}
+
+p {
+    text-wrap: pretty
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-wrap: balance;
+    font-weight: 700;
+}
+
+/* Page Specific Styles */
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1; /* Overlay on top of mesh background (z-index 0) but behind content (z-index 2) */
+    pointer-events: none; /* Allow clicks to pass through if needed, though particles.js handles interaction */
+}
+
+
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-container {
+    width: 500px;
+    /* Maintain aspect ratio of original SVG (201x71) */
+    aspect-ratio: 201 / 71;
+    margin-bottom: 2rem;
+    display: block;
+    position: relative;
+    /* Simulate 3D glass edges using drop-shadow filter (matches H1 text-shadow) */
+    filter: 
+        drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1)) 
+        drop-shadow(-2px -2px 4px rgba(255, 255, 255, 0.5));
+}
+
+.logo-glass {
+    width: 100%;
+    height: 100%;
+    
+    /* The mask shapes the div to the logo letters */
+    -webkit-mask-image: url('logo-creedo-big.svg');
+    mask-image: url('logo-creedo-big.svg');
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    
+    /* Glass Effect Styles applied ONLY to the masked area - MATCHING H1 STYLE */
+    /* Semi-transparent white base */
+    background-color: rgba(255, 255, 255, 0.3);
+    /* Shiny gradient overlay */
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2));
+    
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+h1 {
+    font-size: 4.5rem;
+    margin: 0;
+    font-weight: 700;
+    
+    /* Text Glass Effect */
+    color: rgba(255, 255, 255, 0.2); /* Semi-transparent white text */
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.2)); /* Shiny gradient */
+    -webkit-background-clip: text; /* Clip background to text */
+    background-clip: text;
+    
+    /* Subtle shadows to simulate depth/glass edges */
+    /* text-shadow: 
+        1px 1px 4px rgba(0, 0, 0, 0.1), 
+        -1px -1px 4px rgba(255, 255, 255, 0.5); */
+        
+    /* Enhance readability */
+    letter-spacing: 0.02em;
+    backdrop-filter: blur(2px); /* Slight blur behind the text itself (experimental) */
+    
+    /* Simulate 3D glass edges using drop-shadow filter (matches Logo) */
+    filter: 
+        drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.1)) 
+        drop-shadow(-1px -1px 2px rgba(255, 255, 255, 0.5));
+}
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.time-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+    
+    /* Text Glass Effect - MATCHING H1 STYLE */
+    color: rgba(255, 255, 255, 0.2);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    
+    backdrop-filter: blur(2px);
+    
+    /* Simulate 3D glass edges using drop-shadow filter */
+    filter: 
+        drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.1)) 
+        drop-shadow(-1px -1px 2px rgba(255, 255, 255, 0.5));
+}
+
+.label {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.5rem;
+    
+    /* Text Glass Effect - MATCHING H1 STYLE */
+    color: rgba(255, 255, 255, 0.3);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    
+    backdrop-filter: blur(2px);
+    
+    /* Simulate 3D glass edges using drop-shadow filter */
+    filter: 
+        drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.1)) 
+        drop-shadow(-1px -1px 2px rgba(255, 255, 255, 0.5));
+}
+
+/* Animated mesh background */
+.mesh-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    /* Base background */
+    background: linear-gradient(180deg, #ffffff 0%, #c4d0dd 100%);
+    overflow: hidden;
+}
+
+.mesh-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.8;
+    mix-blend-mode: multiply;
+    will-change: transform, opacity;
+}
+
+/* Orb 1: Large Blue-ish (Slow Giant) */
+.orb-1 {
+    width: 90vw;
+    height: 90vw;
+    background: radial-gradient(circle, rgba(196, 208, 221, 0.9) 0%, rgba(196, 208, 221, 0) 70%);
+    top: -20%;
+    left: -20%;
+    animation: flyOrb1 100s infinite linear;
+    z-index: 1;
+}
+
+/* Orb 2: Medium White-ish/Light (Medium Speed) */
+.orb-2 {
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 70%);
+    bottom: -10%;
+    right: -10%;
+    animation: flyOrb2 70s infinite linear reverse;
+    mix-blend-mode: overlay;
+    z-index: 2;
+}
+
+/* Orb 3: Another Blue, different shade (Medium Slow) */
+.orb-3 {
+    width: 50vw;
+    height: 50vw;
+    background: radial-gradient(circle, rgba(180, 195, 210, 0.8) 0%, rgba(196, 208, 221, 0) 70%);
+    top: 40%;
+    left: 40%;
+    animation: flyOrb3 80s infinite linear;
+    z-index: 1;
+}
+
+/* Orb 4: Small highlighter (Fast & Small) */
+.orb-4 {
+    width: 20vw;
+    height: 20vw;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 70%);
+    bottom: 20%;
+    left: 10%;
+    animation: flyOrb4 36s infinite linear;
+    mix-blend-mode: overlay;
+    z-index: 3;
+}
+
+/* Orb 5: Fast Foreground Cloud (Fast & Medium) */
+.orb-5 {
+    width: 25vw;
+    height: 25vw;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 70%);
+    top: 50%;
+    left: 50%;
+    animation: flyOrb5 40s infinite linear;
+    z-index: 3;
+    filter: blur(40px);
+}
+
+/* Orb 6: Deep Background Giant (Very Large & Very Slow) */
+.orb-6 {
+    width: 120vw;
+    height: 120vw;
+    background: radial-gradient(circle, rgba(196, 208, 221, 0.3) 0%, rgba(196, 208, 221, 0) 60%);
+    top: -40%;
+    right: -40%;
+    animation: flyOrb6 140s infinite linear;
+    z-index: -1;
+}
+
+/* Orb 7: Erratic Wanderer (Very Small & Very Fast) */
+.orb-7 {
+    width: 15vw;
+    height: 15vw;
+    background: radial-gradient(circle, rgba(180, 195, 210, 0.7) 0%, rgba(196, 208, 221, 0) 70%);
+    bottom: 10%;
+    right: 30%;
+    animation: flyOrb7 30s infinite linear;
+    z-index: 2;
+}
+
+/* Orb 8: Tiny Spark (Hyper Fast) */
+.orb-8 {
+    width: 10vw;
+    height: 10vw;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 70%);
+    top: 10%;
+    left: 10%;
+    animation: flyOrb8 24s infinite linear;
+    mix-blend-mode: overlay;
+    z-index: 4;
+}
+
+/* Orb 9: Large Darker Blue (Slow Background) */
+.orb-9 {
+    width: 80vw;
+    height: 80vw;
+    background: radial-gradient(circle, rgba(150, 170, 190, 0.5) 0%, rgba(196, 208, 221, 0) 70%);
+    top: 30%;
+    right: 20%;
+    animation: flyOrb9 110s infinite linear;
+    z-index: 0;
+}
+
+/* Orb 10: Medium Fast White (Foreground) */
+.orb-10 {
+    width: 35vw;
+    height: 35vw;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 60%);
+    bottom: 40%;
+    left: 20%;
+    animation: flyOrb10 50s infinite linear reverse;
+    z-index: 3;
+}
+
+/* Orb 11: Massive Faint Overlay */
+.orb-11 {
+    width: 150vw;
+    height: 150vw;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 50%);
+    top: -50%;
+    left: 20%;
+    animation: flyOrb11 120s infinite linear;
+    z-index: 5;
+    pointer-events: none;
+}
+
+/* Orb 12: Small Erratic Blue */
+.orb-12 {
+    width: 18vw;
+    height: 18vw;
+    background: radial-gradient(circle, rgba(180, 195, 210, 0.8) 0%, rgba(196, 208, 221, 0) 70%);
+    top: 60%;
+    right: 10%;
+    animation: flyOrb12 32s infinite linear;
+    z-index: 2;
+}
+
+/* Orb 13: Fast Crosser */
+.orb-13 {
+    width: 22vw;
+    height: 22vw;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 70%);
+    bottom: 5%;
+    left: 40%;
+    animation: flyOrb13 38s infinite linear;
+    mix-blend-mode: overlay;
+    z-index: 3;
+}
+
+/* Orb 14: Deep Deep Background */
+.orb-14 {
+    width: 110vw;
+    height: 110vw;
+    background: radial-gradient(circle, rgba(196, 208, 221, 0.2) 0%, rgba(196, 208, 221, 0) 60%);
+    top: 20%;
+    right: -20%;
+    animation: flyOrb14 130s infinite linear reverse;
+    z-index: -2;
+}
+
+/* Orb 15: Bright Flashy Highlight */
+.orb-15 {
+    width: 30vw;
+    height: 30vw;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 70%);
+    top: 15%;
+    right: 15%;
+    animation: flyOrb15 44s infinite linear;
+    mix-blend-mode: overlay;
+    z-index: 4;
+}
+
+/* Orb 16: Fast, small white dot */
+.orb-16 {
+    width: 5vw;
+    height: 5vw;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 70%);
+    top: 80%;
+    left: 10%;
+    animation: flyOrb16 20s infinite linear;
+    z-index: 5;
+}
+
+/* Orb 17: Large, slow blue mist */
+.orb-17 {
+    width: 70vw;
+    height: 70vw;
+    background: radial-gradient(circle, rgba(196, 208, 221, 0.3) 0%, rgba(196, 208, 221, 0) 70%);
+    top: -10%;
+    left: 40%;
+    animation: flyOrb17 120s infinite linear;
+    z-index: -1;
+}
+
+/* Orb 18: Medium white cloud */
+.orb-18 {
+    width: 45vw;
+    height: 45vw;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 70%);
+    bottom: 30%;
+    right: 50%;
+    animation: flyOrb18 60s infinite linear reverse;
+    z-index: 2;
+}
+
+/* Orb 19: Small fast blue dart */
+.orb-19 {
+    width: 12vw;
+    height: 12vw;
+    background: radial-gradient(circle, rgba(180, 195, 210, 0.9) 0%, rgba(196, 208, 221, 0) 70%);
+    top: 20%;
+    right: 5%;
+    animation: flyOrb19 28s infinite linear;
+    z-index: 4;
+}
+
+/* Orb 20: Huge faint background wash */
+.orb-20 {
+    width: 130vw;
+    height: 130vw;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 60%);
+    bottom: -50%;
+    left: -20%;
+    animation: flyOrb20 160s infinite linear;
+    z-index: -2;
+}
+
+/* Orb 21: Tiny erratic spark */
+.orb-21 {
+    width: 8vw;
+    height: 8vw;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 70%);
+    top: 45%;
+    left: 45%;
+    animation: flyOrb21 18s infinite linear;
+    mix-blend-mode: overlay;
+    z-index: 5;
+}
+
+/* Orb 22: Medium blue-gray drifter */
+.orb-22 {
+    width: 55vw;
+    height: 55vw;
+    background: radial-gradient(circle, rgba(196, 208, 221, 0.5) 0%, rgba(196, 208, 221, 0) 70%);
+    bottom: 10%;
+    right: 10%;
+    animation: flyOrb22 90s infinite linear;
+    z-index: 0;
+}
+
+/* Orb 23: Fast white streak */
+.orb-23 {
+    width: 25vw;
+    height: 25vw;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 70%);
+    top: 5%;
+    left: 60%;
+    animation: flyOrb23 36s infinite linear reverse;
+    z-index: 3;
+}
+
+/* Orb 24: Large corner anchor */
+.orb-24 {
+    width: 95vw;
+    height: 95vw;
+    background: radial-gradient(circle, rgba(196, 208, 221, 0.4) 0%, rgba(196, 208, 221, 0) 60%);
+    top: -30%;
+    right: 30%;
+    animation: flyOrb24 140s infinite linear;
+    z-index: -1;
+}
+
+/* Orb 25: Hyper-fast tiny particle */
+.orb-25 {
+    width: 6vw;
+    height: 6vw;
+    background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 70%);
+    bottom: 40%;
+    left: 30%;
+    animation: flyOrb25 14s infinite linear;
+    mix-blend-mode: screen;
+    z-index: 6;
+}
+
+@keyframes flyOrb1 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    25% { transform: translate3d(60vw, 30vh, 0) scale(1.1); }
+    50% { transform: translate3d(10vw, 80vh, 0) scale(0.95); }
+    75% { transform: translate3d(-10vw, 20vh, 0) scale(1.05); }
+    100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes flyOrb2 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    33% { transform: translate3d(-40vw, -40vh, 0) scale(1.2); }
+    66% { transform: translate3d(-10vw, 10vh, 0) scale(0.9); }
+    100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes flyOrb3 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    25% { transform: translate3d(30vw, -30vh, 0) scale(0.9); }
+    50% { transform: translate3d(-20vw, -10vh, 0) scale(1.1); }
+    75% { transform: translate3d(10vw, 20vh, 0) scale(0.95); }
+    100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes flyOrb4 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    33% { transform: translate3d(50vw, -10vh, 0) scale(1.2); }
+    66% { transform: translate3d(20vw, 40vh, 0) scale(0.8); }
+    100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes flyOrb5 {
+    0% { transform: translate3d(-50vw, -50vh, 0) scale(0.8); opacity: 0; }
+    20% { opacity: 0.8; }
+    80% { opacity: 0.8; }
+    100% { transform: translate3d(50vw, 50vh, 0) scale(1.3); opacity: 0; }
+}
+
+@keyframes flyOrb6 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    50% { transform: translate3d(-15vw, 10vh, 0) scale(1.05); }
+    100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes flyOrb7 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    25% { transform: translate3d(-20vw, 30vh, 0) scale(0.7); }
+    50% { transform: translate3d(30vw, -10vh, 0) scale(1.1); }
+    75% { transform: translate3d(-10vw, -40vh, 0) scale(0.9); }
+    100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes flyOrb8 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    20% { transform: translate3d(60vw, 15vh, 0) scale(0.7); }
+    40% { transform: translate3d(30vw, 60vh, 0) scale(1.3); }
+    60% { transform: translate3d(-15vw, 30vh, 0) scale(0.9); }
+    80% { transform: translate3d(15vw, -15vh, 0) scale(1.1); }
+    100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes flyOrb9 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    50% { transform: translate3d(-40vw, -20vh, 0) scale(1.1); }
+    100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes flyOrb10 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    33% { transform: translate3d(30vw, -50vh, 0) scale(0.9); }
+    66% { transform: translate3d(-20vw, -10vh, 0) scale(1.2); }
+    100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes flyOrb11 {
+    0% { transform: translate3d(0, 0, 0) rotate(0deg); }
+    100% { transform: translate3d(0, 0, 0) rotate(360deg); }
+}
+
+@keyframes flyOrb12 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    25% { transform: translate3d(-50vw, -15vh, 0) scale(1.2); }
+    50% { transform: translate3d(-15vw, -50vh, 0) scale(0.8); }
+    75% { transform: translate3d(20vw, -20vh, 0) scale(1.1); }
+    100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes flyOrb13 {
+    0% { transform: translate3d(0, 0, 0) scale(0.9); }
+    50% { transform: translate3d(60vw, -60vh, 0) scale(1.1); }
+    100% { transform: translate3d(0, 0, 0) scale(0.9); }
+}
+
+@keyframes flyOrb14 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    50% { transform: translate3d(20vw, 20vh, 0) scale(1.05); }
+    100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes flyOrb15 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    33% { transform: translate3d(-30vw, 40vh, 0) scale(1.2); }
+    66% { transform: translate3d(-60vw, 10vh, 0) scale(0.9); }
+    100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes flyOrb16 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    25% { transform: translate3d(50vw, -30vh, 0) scale(0.7); }
+    50% { transform: translate3d(20vw, -60vh, 0) scale(1.3); }
+    75% { transform: translate3d(60vw, -15vh, 0) scale(0.9); }
+    100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes flyOrb17 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    50% { transform: translate3d(-20vw, 15vh, 0) scale(1.05); }
+    100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes flyOrb18 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    33% { transform: translate3d(-40vw, -15vh, 0) scale(0.95); }
+    66% { transform: translate3d(-10vw, -50vh, 0) scale(1.1); }
+    100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes flyOrb19 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    20% { transform: translate3d(-30vw, 50vh, 0) scale(1.2); }
+    60% { transform: translate3d(-60vw, 15vh, 0) scale(0.8); }
+    100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes flyOrb20 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    50% { transform: translate3d(10vw, -10vh, 0) scale(1.02); }
+    100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes flyOrb21 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    25% { transform: translate3d(40vw, 20vh, 0) scale(0.6); }
+    50% { transform: translate3d(-20vw, 40vh, 0) scale(1.3); }
+    75% { transform: translate3d(-50vw, -15vh, 0) scale(0.9); }
+    100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes flyOrb22 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    33% { transform: translate3d(-15vw, -30vh, 0) scale(1.05); }
+    66% { transform: translate3d(10vw, -50vh, 0) scale(0.95); }
+    100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes flyOrb23 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    50% { transform: translate3d(-40vw, 40vh, 0) scale(1.1); }
+    100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes flyOrb24 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    50% { transform: translate3d(-15vw, 15vh, 0) scale(1.02); }
+    100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes flyOrb25 {
+    0% { transform: translate3d(0, 0, 0) scale(0.6); }
+    20% { transform: translate3d(60vw, -20vh, 0) scale(1.3); }
+    40% { transform: translate3d(-15vw, -60vh, 0) scale(0.9); }
+    60% { transform: translate3d(-40vw, 15vh, 0) scale(1.1); }
+    80% { transform: translate3d(20vw, 50vh, 0) scale(0.7); }
+    100% { transform: translate3d(0, 0, 0) scale(0.6); }
+}
