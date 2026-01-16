@@ -83,6 +83,28 @@ function initParticles() {
 }
 
 initParticles();
+// Initialize VANTA fog effect
+let vantaEffect;
+function initVantaFog() {
+    const el = document.getElementById("vanta-bg");
+    if (!el || typeof VANTA === "undefined" || !VANTA.FOG) return;
+    vantaEffect = VANTA.FOG({
+        // VANTA fog effect settings
+        el: "#vanta-bg", // Target element ID
+        mouseControls: false,
+        touchControls: false,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        highlightColor: 0xb6b6b6,
+        midtoneColor: 0x637df5,
+        lowlightColor: 0xed75cd,
+        baseColor: 0xe6e6e6,
+        blurFactor: 0.80,
+        zoom: 0.40
+    });
+}
+initVantaFog();
 
 function setupCreedoFormValidation() {
     const form = document.querySelector('form[data-validate="creedo"]');
