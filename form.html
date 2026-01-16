@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creedo Prize Drawing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Afacad:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    
+    <!-- Combined styles -->
+    <link rel="stylesheet" href="assets/index.css">
+</head>
+<body>
+    <!-- Background from index.html -->
+    <div id="particles-js"></div>
+    <div class="mesh-bg">
+        <div class="mesh-orb orb-1"></div>
+        <div class="mesh-orb orb-2"></div>
+        <div class="mesh-orb orb-3"></div>
+        <div class="mesh-orb orb-4"></div>
+        <div class="mesh-orb orb-5"></div>
+        <div class="mesh-orb orb-6"></div>
+        <div class="mesh-orb orb-7"></div>
+        <div class="mesh-orb orb-8"></div>
+        <div class="mesh-orb orb-9"></div>
+        <div class="mesh-orb orb-10"></div>
+        <div class="mesh-orb orb-11"></div>
+        <div class="mesh-orb orb-12"></div>
+        <div class="mesh-orb orb-13"></div>
+        <div class="mesh-orb orb-14"></div>
+        <div class="mesh-orb orb-15"></div>
+        <div class="mesh-orb orb-16"></div>
+        <div class="mesh-orb orb-17"></div>
+        <div class="mesh-orb orb-18"></div>
+        <div class="mesh-orb orb-19"></div>
+        <div class="mesh-orb orb-20"></div>
+        <div class="mesh-orb orb-21"></div>
+        <div class="mesh-orb orb-22"></div>
+        <div class="mesh-orb orb-23"></div>
+        <div class="mesh-orb orb-24"></div>
+        <div class="mesh-orb orb-25"></div>
+    </div>
+
+    <!-- Form Container -->
+    <div class="center-container">
+        <div class="logo-container">
+            <img src="assets/logo-creedo-big.svg" alt="Creedo Logo" class="logo-image">
+        </div>
+        <div class="form-card">
+            <h2 class="form-title">Contact Us</h2>
+            <form novalidate data-validate="creedo">
+                <!-- Name -->
+                <div class="form-group">
+                    <div class="form-group-label">
+                        <label for="name">Name</label>
+                    </div>
+                    <div class="form-control">
+                        <input type="text" id="name" name="name" class="form-control-input" placeholder="Introduce Yourself" required aria-describedby="name-error">
+                        <span class="icon" aria-hidden="true"></span>
+                    </div>
+                    <p class="err-text" id="name-error" hidden></p>
+                </div>
+
+                <!-- Company -->
+                <div class="form-group">
+                    <div class="form-group-label">
+                        <label for="company">Company</label>
+                    </div>
+                    <div class="form-control">
+                        <input type="text" id="company" name="company" class="form-control-input" placeholder="Brand Name" required aria-describedby="company-error">
+                        <span class="icon" aria-hidden="true"></span>
+                    </div>
+                    <p class="err-text" id="company-error" hidden></p>
+                </div>
+
+                <!-- Position -->
+                <div class="form-group">
+                    <div class="form-group-label">
+                        <label for="position">Position</label>
+                    </div>
+                    <div class="form-control">
+                        <input type="text" id="position" name="position" class="form-control-input" placeholder="e.g. CEO" required aria-describedby="position-error">
+                        <span class="icon" aria-hidden="true"></span>
+                    </div>
+                    <p class="err-text" id="position-error" hidden></p>
+                </div>
+
+                <!-- Telegram -->
+                <div class="form-group">
+                    <div class="form-group-label">
+                        <label for="telegram">Telegram</label>
+                    </div>
+                    <div class="form-control">
+                        <input type="text" id="telegram" name="telegram" class="form-control-input" placeholder="@username" required pattern="^@?[A-Za-z0-9_]{5,32}$" aria-describedby="telegram-error">
+                        <span class="icon" aria-hidden="true"></span>
+                    </div>
+                    <p class="err-text" id="telegram-error" hidden></p>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Load particles.js from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="assets/main.js?v=2"></script>
+</body>
+</html>
